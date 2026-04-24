@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  --bg-color: #f5f0e8;
+  --font-color: #3c3489;
+  --alive-cell: #7f77dd;
+  --dead-cell: #e1f5ee;
+  --hover-alive-cell: #afa9ec;
+  --hover-dead-cell: #9fe1cb;
+  --btn-color: #7f77dd;
+  --btn-font: #eeedfe;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+h1,
+h2 {
+  margin: 0.625rem;
+}
+
+p,
+span {
+  line-height: 1.3rem;
+}
