@@ -9,7 +9,8 @@
 }
 
 :root {
-  --bg-color: #f5f0e8;
+  --bg-color: #fdfbf7;
+  --bg-canvas: #f5f0e8;
   --font-color: #3c3489;
   --alive-cell: #7f77dd;
   --dead-cell: #e1f5ee;
