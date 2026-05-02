@@ -35,3 +35,4 @@ using the GitHub Copilot plugin in VS Code.
 
 - JavaScript
 - CSS
+- HTML canvas element
