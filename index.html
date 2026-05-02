@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>game-of-life</title>
+    <title>Game of Life</title>
     <script type="module" src="/src/js/main.js"></script>
     <link rel="stylesheet" href="./src/css/style.css" />
     <link rel="stylesheet" href="./src/css/default.css" />
@@ -12,6 +12,19 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div class="wrapper"></div>
+    <div class="wrapper">
+      <h1 class="title">Game of Life</h1>
+      <div class="game-info-wrapper">
+        <p class="game-status">placeholder</p>
+        <p>Generation: <span class="generation">0</span></p>
+        <p>Alive Cells: <span class="alive-cells">0</span></p>
+      </div>
+      <canvas class="game-canvas"></canvas>
+      <div class="controls">
+        <button class="start-btn">Start</button>
+        <button class="stop-btn">Stop</button>
+        <button class="reset-btn">Reset</button>
+      </div>
+    </div>
   </body>
 </html>
