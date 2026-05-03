@@ -1,3 +1,5 @@
+const deadCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--dead-cell");
+const aliveCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--alive-cell");
 const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -9,3 +11,5 @@ for (let i = 0; i < 500; i += 10) {
     ctx.fill();
   }
 }
+
+console.log(deadCellColor, aliveCellColor);
