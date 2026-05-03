@@ -1,8 +1,4 @@
-const deadCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--dead-cell");
-const aliveCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--alive-cell");
-const canvas = document.querySelector(".game-canvas");
-const ctx = canvas.getContext("2d");
-const grid = [];
+// functions
 
 function neighborCount(i, j) {
   const count = 0;
@@ -15,6 +11,23 @@ function neighborCount(i, j) {
   }
   return count;
 }
+
+function updateCell(i, j) {
+  const neighbors = neighborCount(i, j);
+  if (grid[i][j] === 1) {
+    grid[i][j] = neighbors === 2 || neighbors === 3 ? 1 : 0;
+  } else {
+    grid[i][j] = neighbors === 3 ? 1 : 0;
+  }
+}
+
+// main program
+
+const deadCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--dead-cell");
+const aliveCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--alive-cell");
+const canvas = document.querySelector(".game-canvas");
+const ctx = canvas.getContext("2d");
+const grid = [];
 
 for (let i = 0; i < 50; i++) {
   grid[i] = [];
@@ -31,8 +44,7 @@ console.log(deadCellColor, aliveCellColor, grid);
 
 for (let i = 0; i < 50; i++) {
   for (let j = 0; j < 50; j++) {
-    const neighbors = neighborCount(i, j);
-    grid[i][j] = Math.random() > 0.5 ? 1 : 0;
+    updateCell(i, j);
     ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
     ctx.beginPath();
     ctx.roundRect(i * 10, j * 10, 9, 9, 2);
