@@ -4,6 +4,18 @@ const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 const grid = [];
 
+function neighborCount(i, j) {
+  const count = 0;
+  for (let x = -1; x <= 1; x++) {
+    for (let y = -1; y <= 1; y++) {
+      if (x === 0 && y === 0) continue;
+      if (i + x < 0 || i + x >= 50 || j + y < 0 || j + y >= 50) continue;
+      count += grid[i + x][j + y];
+    }
+  }
+  return count;
+}
+
 for (let i = 0; i < 50; i++) {
   grid[i] = [];
   for (let j = 0; j < 50; j++) {
@@ -16,3 +28,14 @@ for (let i = 0; i < 50; i++) {
 }
 
 console.log(deadCellColor, aliveCellColor, grid);
+
+for (let i = 0; i < 50; i++) {
+  for (let j = 0; j < 50; j++) {
+    const neighbors = neighborCount(i, j);
+    grid[i][j] = Math.random() > 0.5 ? 1 : 0;
+    ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
+    ctx.beginPath();
+    ctx.roundRect(i * 10, j * 10, 9, 9, 2);
+    ctx.fill();
+  }
+}
