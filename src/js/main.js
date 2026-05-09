@@ -48,15 +48,12 @@ function startGame() {
   canvas.removeEventListener("click", toggleCell);
   gameInterval = setInterval(() => {
     for (let i = 0; i < 50; i++) {
-      newGrid[i] = [];
       for (let j = 0; j < 50; j++) {
         updateCell(i, j);
         fillCell(i, j);
       }
     }
-    console.log(grid);
-    console.log(newGrid);
-    grid = newGrid;
+    [grid, newGrid] = [newGrid, grid];
   }, 1000);
 }
 
@@ -102,6 +99,7 @@ resetButton.addEventListener("click", () => {
   isRunning = false;
   for (let i = 0; i < 50; i++) {
     for (let j = 0; j < 50; j++) {
+      grid[i][j] = 0;
       newGrid[i][j] = 0;
       fillCell(i, j);
     }
