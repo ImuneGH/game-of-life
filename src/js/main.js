@@ -75,8 +75,6 @@ for (let i = 0; i < 50; i++) {
   }
 }
 
-console.log(deadCellColor, aliveCellColor, grid);
-
 canvas.addEventListener("click", (e) => {
   toggleCell(e.offsetX, e.offsetY);
 });
@@ -94,13 +92,3 @@ resetButton.addEventListener("click", () => {
     }
   }
 });
-
-// for (let i = 0; i < 50; i++) {
-//   for (let j = 0; j < 50; j++) {
-//     updateCell(i, j);
-//     ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
-//     ctx.beginPath();
-//     ctx.roundRect(i * 10, j * 10, 9, 9, 2);
-//     ctx.fill();
-//   }
-// }
