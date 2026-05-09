@@ -67,26 +67,21 @@ for (let i = 0; i < 50; i++) {
   grid[i] = [];
   for (let j = 0; j < 50; j++) {
     grid[i][j] = 0;
-    ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
-    ctx.beginPath();
-    ctx.roundRect(i * 10, j * 10, 9, 9, 2);
-    ctx.fill();
+    fillCell(i, j);
   }
 }
 
 console.log(deadCellColor, aliveCellColor, grid);
 
-// setInterval(() => {
 canvas.addEventListener("click", (e) => {
   toggleCell(e.offsetX, e.offsetY);
 });
-for (let i = 0; i < 50; i++) {
-  for (let j = 0; j < 50; j++) {
-    updateCell(i, j);
-    ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
-    ctx.beginPath();
-    ctx.roundRect(i * 10, j * 10, 9, 9, 2);
-    ctx.fill();
-  }
-}
-// }, 1000);
+// for (let i = 0; i < 50; i++) {
+//   for (let j = 0; j < 50; j++) {
+//     updateCell(i, j);
+//     ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
+//     ctx.beginPath();
+//     ctx.roundRect(i * 10, j * 10, 9, 9, 2);
+//     ctx.fill();
+//   }
+// }
