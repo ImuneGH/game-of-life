@@ -23,6 +23,12 @@ function updateCell(i, j) {
   }
 }
 
+function toggleCell(i, j) {
+  i = Math.floor(i / 10);
+  j = Math.floor(j / 10);
+  grid[i][j] = grid[i][j] === 1 ? 0 : 1;
+}
+
 //*******************
 // main program
 //*******************
@@ -36,7 +42,7 @@ let grid = [];
 for (let i = 0; i < 50; i++) {
   grid[i] = [];
   for (let j = 0; j < 50; j++) {
-    grid[i][j] = Math.random() > 0.5 ? 1 : 0;
+    grid[i][j] = 0;
     ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
     ctx.beginPath();
     ctx.roundRect(i * 10, j * 10, 9, 9, 2);
@@ -46,14 +52,18 @@ for (let i = 0; i < 50; i++) {
 
 console.log(deadCellColor, aliveCellColor, grid);
 
-setInterval(() => {
-  for (let i = 0; i < 50; i++) {
-    for (let j = 0; j < 50; j++) {
-      updateCell(i, j);
-      ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
-      ctx.beginPath();
-      ctx.roundRect(i * 10, j * 10, 9, 9, 2);
-      ctx.fill();
-    }
+// setInterval(() => {
+canvas.addEventListener("click", (e) => {
+  console.log(e.offsetX, e.offsetY);
+  toggleCell(e.offsetX, e.offsetY);
+});
+for (let i = 0; i < 50; i++) {
+  for (let j = 0; j < 50; j++) {
+    updateCell(i, j);
+    ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
+    ctx.beginPath();
+    ctx.roundRect(i * 10, j * 10, 9, 9, 2);
+    ctx.fill();
   }
-}, 1000);
+}
+// }, 1000);
