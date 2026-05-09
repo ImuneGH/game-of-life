@@ -62,7 +62,6 @@ console.log(deadCellColor, aliveCellColor, grid);
 
 // setInterval(() => {
 canvas.addEventListener("mousedown", (e) => {
-  console.log(e.offsetX, e.offsetY);
   toggleCell(e.offsetX, e.offsetY);
 });
 for (let i = 0; i < 50; i++) {
