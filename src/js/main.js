@@ -30,11 +30,13 @@ function fillCell(i, j) {
   ctx.fill();
 }
 
-function toggleCell(i, j) {
-  i = Math.floor(i / 10);
-  j = Math.floor(j / 10);
-  grid[i][j] = grid[i][j] === 1 ? 0 : 1;
-  fillCell(i, j);
+function toggleCell(e) {
+  let x = e.offsetX;
+  let y = e.offsetY;
+  let row = Math.floor(y / 10);
+  let col = Math.floor(x / 10);
+  grid[row][col] = grid[row][col] === 1 ? 0 : 1;
+  fillCell(row, col);
 }
 
 function startGame() {
@@ -45,7 +47,7 @@ function startGame() {
         fillCell(i, j);
       }
     }
-    console.log("tick");
+    console.log(gameInterval);
   }, 1000);
 }
 
@@ -58,7 +60,7 @@ const aliveCellColor = window.getComputedStyle(document.documentElement).getProp
 const startButton = document.querySelector(".start-btn");
 const stopButton = document.querySelector(".stop-btn");
 const resetButton = document.querySelector(".reset-btn");
-const gameInterval = null;
+let gameInterval = null;
 const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 let grid = [];
@@ -75,9 +77,7 @@ for (let i = 0; i < 50; i++) {
   }
 }
 
-canvas.addEventListener("click", (e) => {
-  toggleCell(e.offsetX, e.offsetY);
-});
+canvas.addEventListener("click", toggleCell);
 
 startButton.addEventListener("click", startGame);
 stopButton.addEventListener("click", () => {
