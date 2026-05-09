@@ -23,14 +23,30 @@ function updateCell(i, j) {
   }
 }
 
-function toggleCell(i, j) {
-  i = Math.floor(i / 10);
-  j = Math.floor(j / 10);
-  grid[i][j] = grid[i][j] === 1 ? 0 : 1;
+function fillCell(i, j) {
   ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
   ctx.beginPath();
   ctx.roundRect(i * 10, j * 10, 9, 9, 2);
   ctx.fill();
+}
+
+function toggleCell(i, j) {
+  i = Math.floor(i / 10);
+  j = Math.floor(j / 10);
+  grid[i][j] = grid[i][j] === 1 ? 0 : 1;
+  fillCell(i, j);
+}
+
+function startGame() {
+  setInterval(() => {
+    for (let i = 0; i < 50; i++) {
+      for (let j = 0; j < 50; j++) {
+        updateCell(i, j);
+        fillCell(i, j);
+        ctx.fill();
+      }
+    }
+  }, 1000);
 }
 
 //*******************
@@ -61,7 +77,7 @@ for (let i = 0; i < 50; i++) {
 console.log(deadCellColor, aliveCellColor, grid);
 
 // setInterval(() => {
-canvas.addEventListener("mousedown", (e) => {
+canvas.addEventListener("click", (e) => {
   toggleCell(e.offsetX, e.offsetY);
 });
 for (let i = 0; i < 50; i++) {
