@@ -17,14 +17,18 @@ function neighborCount(i, j) {
 function updateCell(i, j) {
   const neighbors = neighborCount(i, j);
   if (grid[i][j] === 1) {
-    grid[i][j] = neighbors === 2 || neighbors === 3 ? 1 : 0;
+    newGrid[i][j] = neighbors === 2 || neighbors === 3 ? 1 : 0;
   } else {
-    grid[i][j] = neighbors === 3 ? 1 : 0;
+    newGrid[i][j] = neighbors === 3 ? 1 : 0;
   }
 }
 
 function fillCell(i, j) {
-  ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
+  if (isRunning) {
+    ctx.fillStyle = newGrid[i][j] === 1 ? aliveCellColor : deadCellColor;
+  } else {
+    ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
+  }
   ctx.beginPath();
   ctx.roundRect(j * 10, i * 10, 9, 9, 2);
   ctx.fill();
@@ -40,14 +44,19 @@ function toggleCell(e) {
 }
 
 function startGame() {
+  isRunning = true;
   canvas.removeEventListener("click", toggleCell);
   gameInterval = setInterval(() => {
     for (let i = 0; i < 50; i++) {
+      newGrid[i] = [];
       for (let j = 0; j < 50; j++) {
         updateCell(i, j);
         fillCell(i, j);
       }
     }
+    console.log(grid);
+    console.log(newGrid);
+    grid = newGrid;
   }, 1000);
 }
 
@@ -60,10 +69,12 @@ const aliveCellColor = window.getComputedStyle(document.documentElement).getProp
 const startButton = document.querySelector(".start-btn");
 const stopButton = document.querySelector(".stop-btn");
 const resetButton = document.querySelector(".reset-btn");
+let isRunning = false;
 let gameInterval = null;
 const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 let grid = [];
+let newGrid = [];
 
 if (!canvas.getContext) {
   alert("Your browser does not support canvas!");
@@ -71,8 +82,10 @@ if (!canvas.getContext) {
 
 for (let i = 0; i < 50; i++) {
   grid[i] = [];
+  newGrid[i] = [];
   for (let j = 0; j < 50; j++) {
     grid[i][j] = 0;
+    newGrid[i][j] = 0;
     fillCell(i, j);
   }
 }
@@ -82,12 +95,14 @@ canvas.addEventListener("click", toggleCell);
 startButton.addEventListener("click", startGame);
 stopButton.addEventListener("click", () => {
   clearInterval(gameInterval);
+  isRunning = false;
 });
 resetButton.addEventListener("click", () => {
   clearInterval(gameInterval);
+  isRunning = false;
   for (let i = 0; i < 50; i++) {
     for (let j = 0; j < 50; j++) {
-      grid[i][j] = 0;
+      newGrid[i][j] = 0;
       fillCell(i, j);
     }
   }
