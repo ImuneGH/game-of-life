@@ -33,13 +33,14 @@ function fillCell(i, j) {
 function toggleCell(e) {
   let x = e.offsetX;
   let y = e.offsetY;
-  let row = Math.floor(y / 10);
-  let col = Math.floor(x / 10);
+  let row = Math.floor(x / 10);
+  let col = Math.floor(y / 10);
   grid[row][col] = grid[row][col] === 1 ? 0 : 1;
   fillCell(row, col);
 }
 
 function startGame() {
+  canvas.removeEventListener("click", toggleCell);
   gameInterval = setInterval(() => {
     for (let i = 0; i < 50; i++) {
       for (let j = 0; j < 50; j++) {
@@ -91,4 +92,5 @@ resetButton.addEventListener("click", () => {
       fillCell(i, j);
     }
   }
+  canvas.addEventListener("click", toggleCell);
 });
