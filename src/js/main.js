@@ -38,14 +38,14 @@ function toggleCell(i, j) {
 }
 
 function startGame() {
-  setInterval(() => {
+  gameInterval = setInterval(() => {
     for (let i = 0; i < 50; i++) {
       for (let j = 0; j < 50; j++) {
         updateCell(i, j);
         fillCell(i, j);
-        ctx.fill();
       }
     }
+    console.log("tick");
   }, 1000);
 }
 
@@ -55,6 +55,10 @@ function startGame() {
 
 const deadCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--dead-cell");
 const aliveCellColor = window.getComputedStyle(document.documentElement).getPropertyValue("--alive-cell");
+const startButton = document.querySelector(".start-btn");
+const stopButton = document.querySelector(".stop-btn");
+const resetButton = document.querySelector(".reset-btn");
+const gameInterval = null;
 const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 let grid = [];
@@ -76,6 +80,21 @@ console.log(deadCellColor, aliveCellColor, grid);
 canvas.addEventListener("click", (e) => {
   toggleCell(e.offsetX, e.offsetY);
 });
+
+startButton.addEventListener("click", startGame);
+stopButton.addEventListener("click", () => {
+  clearInterval(gameInterval);
+});
+resetButton.addEventListener("click", () => {
+  clearInterval(gameInterval);
+  for (let i = 0; i < 50; i++) {
+    for (let j = 0; j < 50; j++) {
+      grid[i][j] = 0;
+      fillCell(i, j);
+    }
+  }
+});
+
 // for (let i = 0; i < 50; i++) {
 //   for (let j = 0; j < 50; j++) {
 //     updateCell(i, j);
