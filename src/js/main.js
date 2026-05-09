@@ -26,15 +26,15 @@ function updateCell(i, j) {
 function fillCell(i, j) {
   ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
   ctx.beginPath();
-  ctx.roundRect(i * 10, j * 10, 9, 9, 2);
+  ctx.roundRect(j * 10, i * 10, 9, 9, 2);
   ctx.fill();
 }
 
 function toggleCell(e) {
   let x = e.offsetX;
   let y = e.offsetY;
-  let row = Math.floor(x / 10);
-  let col = Math.floor(y / 10);
+  let col = Math.floor(x / 10);
+  let row = Math.floor(y / 10);
   grid[row][col] = grid[row][col] === 1 ? 0 : 1;
   fillCell(row, col);
 }
@@ -48,7 +48,6 @@ function startGame() {
         fillCell(i, j);
       }
     }
-    console.log(gameInterval);
   }, 1000);
 }
 
