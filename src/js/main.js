@@ -72,6 +72,19 @@ function updateCounters() {
   aliveCounter.textContent = aliveCount;
 }
 
+function phaseUpdate() {
+  switch (currentPhase) {
+    case GAMEPHASE.SETUP:
+      gameStatus.textContent = "Fáze 1: Myší vyberte buňky a stiskněte Start pro spuštění simulace.";
+      break;
+    case GAMEPHASE.RUNNING:
+      gameStatus.textContent = "Fáze 2: Simulace běží. Stiskněte Stop pro pozastavení nebo Reset pro restartování.";
+      break;
+    case GAMEPHASE.STOPPED:
+      gameStatus.textContent = "Fáze 3: Hra je pozastavena. Stiskněte Start pro pokračování nebo Reset pro restartování.";
+      break;
+  }
+}
 //*******************
 // main program
 //*******************
@@ -88,6 +101,12 @@ let isRunning = false;
 let gameInterval = null;
 let generation = 0;
 let aliveCount = 0;
+const GAMEPHASE = Object.freeze({
+  SETUP: "setup",
+  RUNNING: "running",
+  STOPPED: "stopped",
+});
+let currentPhase = GAMEPHASE.SETUP;
 const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 let grid = [];
