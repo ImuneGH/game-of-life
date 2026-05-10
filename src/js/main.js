@@ -77,13 +77,13 @@ function updateCounters() {
 function phaseUpdate() {
   switch (currentPhase) {
     case GAMEPHASE.SETUP:
-      gameStatus.textContent = "Fáze 1: Myší vyberte buňky a stiskněte Start pro spuštění simulace.";
+      gameStatus.textContent = "Setup: Myší vyberte buňky a stiskněte Start pro spuštění simulace.";
       break;
     case GAMEPHASE.RUNNING:
-      gameStatus.textContent = "Fáze 2: Simulace běží. Stiskněte Stop pro pozastavení nebo Reset pro restartování.";
+      gameStatus.textContent = "Simulace běží. Stiskněte Stop pro pozastavení nebo Reset pro restartování.";
       break;
     case GAMEPHASE.STOPPED:
-      gameStatus.textContent = "Fáze 3: Hra je pozastavena. Stiskněte Start pro pokračování nebo Reset pro restartování.";
+      gameStatus.textContent = "Hra je pozastavena. Stiskněte Start pro pokračování nebo Reset pro restartování.";
       break;
   }
 }
