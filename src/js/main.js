@@ -61,13 +61,13 @@ function startGame() {
         fillCell(i, j);
       }
     }
+    generation++;
     updateCounters();
     [grid, newGrid] = [newGrid, grid];
   }, 1000);
 }
 
 function updateCounters() {
-  generation++;
   generationCounter.textContent = generation;
   aliveCounter.textContent = aliveCount;
 }
@@ -83,6 +83,7 @@ const stopButton = document.querySelector(".stop-btn");
 const resetButton = document.querySelector(".reset-btn");
 const generationCounter = document.querySelector(".generation");
 const aliveCounter = document.querySelector(".alive-cells");
+const gameStatus = document.querySelector(".game-status");
 let isRunning = false;
 let gameInterval = null;
 let generation = 0;
@@ -114,6 +115,9 @@ stopButton.addEventListener("click", () => {
   isRunning = false;
 });
 resetButton.addEventListener("click", () => {
+  aliveCount = 0;
+  generation = 0;
+  updateCounters();
   clearInterval(gameInterval);
   isRunning = false;
   for (let i = 0; i < 50; i++) {
