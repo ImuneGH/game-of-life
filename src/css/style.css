@@ -22,17 +22,18 @@ body {
 .game-info-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .game-info-wrapper .game-status {
   grid-column: 1 / -1;
   text-align: center;
-  font-size: clamp(1.2rem, 5vw, 2rem);
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
 }
 
 .game-info-wrapper p {
   font-size: clamp(1rem, 3vw, 1.3rem);
+  text-align: center;
 }
 
 .controls {
