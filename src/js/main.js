@@ -18,8 +18,10 @@ function updateCell(i, j) {
   const neighbors = neighborCount(i, j);
   if (grid[i][j] === 1) {
     newGrid[i][j] = neighbors === 2 || neighbors === 3 ? 1 : 0;
+    newGrid[i][j] === 0 && aliveCount--;
   } else {
     newGrid[i][j] = neighbors === 3 ? 1 : 0;
+    newGrid[i][j] === 1 && aliveCount++;
   }
 }
 
@@ -41,6 +43,12 @@ function toggleCell(e) {
   let row = Math.floor(y / 10);
   grid[row][col] = grid[row][col] === 1 ? 0 : 1;
   fillCell(row, col);
+  if (grid[row][col] === 1) {
+    aliveCount++;
+  } else {
+    aliveCount--;
+  }
+  aliveCounter.textContent = aliveCount;
 }
 
 function startGame() {
@@ -53,14 +61,15 @@ function startGame() {
         fillCell(i, j);
       }
     }
-    generationCount();
+    updateCounters();
     [grid, newGrid] = [newGrid, grid];
   }, 1000);
 }
 
-function generationCount() {
+function updateCounters() {
   generation++;
   generationCounter.textContent = generation;
+  aliveCounter.textContent = aliveCount;
 }
 
 //*******************
@@ -73,6 +82,7 @@ const startButton = document.querySelector(".start-btn");
 const stopButton = document.querySelector(".stop-btn");
 const resetButton = document.querySelector(".reset-btn");
 const generationCounter = document.querySelector(".generation");
+const aliveCounter = document.querySelector(".alive-cells");
 let isRunning = false;
 let gameInterval = null;
 let generation = 0;
