@@ -53,8 +53,14 @@ function startGame() {
         fillCell(i, j);
       }
     }
+    generationCount();
     [grid, newGrid] = [newGrid, grid];
   }, 1000);
+}
+
+function generationCount() {
+  generation++;
+  generationCounter.textContent = generation;
 }
 
 //*******************
@@ -66,8 +72,11 @@ const aliveCellColor = window.getComputedStyle(document.documentElement).getProp
 const startButton = document.querySelector(".start-btn");
 const stopButton = document.querySelector(".stop-btn");
 const resetButton = document.querySelector(".reset-btn");
+const generationCounter = document.querySelector(".generation");
 let isRunning = false;
 let gameInterval = null;
+let generation = 0;
+let aliveCount = 0;
 const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 let grid = [];
