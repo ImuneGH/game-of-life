@@ -53,6 +53,8 @@ function toggleCell(e) {
 
 function startGame() {
   isRunning = true;
+  currentPhase = GAMEPHASE.RUNNING;
+  phaseUpdate();
   canvas.removeEventListener("click", toggleCell);
   gameInterval = setInterval(() => {
     for (let i = 0; i < 50; i++) {
@@ -126,12 +128,15 @@ for (let i = 0; i < 50; i++) {
   }
 }
 
+phaseUpdate();
 canvas.addEventListener("click", toggleCell);
 
 startButton.addEventListener("click", startGame);
 stopButton.addEventListener("click", () => {
   clearInterval(gameInterval);
   isRunning = false;
+  currentPhase = GAMEPHASE.STOPPED;
+  phaseUpdate();
 });
 resetButton.addEventListener("click", () => {
   aliveCount = 0;
@@ -139,6 +144,8 @@ resetButton.addEventListener("click", () => {
   updateCounters();
   clearInterval(gameInterval);
   isRunning = false;
+  currentPhase = GAMEPHASE.SETUP;
+  phaseUpdate();
   for (let i = 0; i < 50; i++) {
     for (let j = 0; j < 50; j++) {
       grid[i][j] = 0;
