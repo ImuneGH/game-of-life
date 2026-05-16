@@ -155,3 +155,5 @@ resetButton.addEventListener("click", () => {
   }
   canvas.addEventListener("click", toggleCell);
 });
+
+// rules modal

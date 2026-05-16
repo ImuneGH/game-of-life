@@ -15,6 +15,17 @@
     <div class="wrapper">
       <h1 class="title">Game of Life</h1>
       <button class="rules">[?]</button>
+      <dialog closedby="any" class="rules-dialog">
+        <p class="rules-description">
+          Jedná se o simulaci, kde se používá mřížka (grid) a v ní jsou buňky buď živé nebo mrtvé. Před spuštěním se buňky označí, pak začne simulace, která se řídí těmito pravidly:
+        </p>
+        <ol class="rules-list">
+          <li class="rule-list">Živá buňka s méně než 2 živými sousedy <b>zemře</b> (osamělost)</li>
+          <li class="rule-list">Živá buňka s 2 nebo 3 živými sousedy <b>přežije</b></li>
+          <li class="rule-list">Živá buňka s více než 3 živými sousedy <b>zemře</b> (přelidnění)</li>
+          <li class="rule-list">Mrtvá buňka s přesně 3 živými sousedy <b>oživne</b> (reprodukce)</li>
+        </ol>
+      </dialog>
       <div class="game-info-wrapper">
         <p class="game-status">placeholder</p>
         <p>Generation: <span class="generation">0</span></p>
