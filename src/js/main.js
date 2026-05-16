@@ -157,3 +157,10 @@ resetButton.addEventListener("click", () => {
 });
 
 // rules modal
+
+const rulesButton = document.querySelector(".rules");
+const rulesDialog = document.querySelector(".rules-dialog");
+
+rulesButton.addEventListener("click", () => {
+  rulesDialog.showModal();
+});
