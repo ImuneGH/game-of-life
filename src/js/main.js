@@ -49,7 +49,6 @@ function toggleCell(e) {
   } else {
     aliveCount--;
   }
-  console.log(lastToggledCol, lastToggledRow);
   aliveCounter.textContent = aliveCount;
   lastToggledCol = col;
   lastToggledRow = row;
@@ -59,7 +58,7 @@ function startGame() {
   isRunning = true;
   currentPhase = GAMEPHASE.RUNNING;
   phaseUpdate();
-  // canvas.removeEventListener("click", toggleCell);
+  canvas.removeEventListener("mousedown", mouseDownHandler);
   gameInterval = setInterval(() => {
     for (let i = 0; i < 50; i++) {
       for (let j = 0; j < 50; j++) {
@@ -91,6 +90,24 @@ function phaseUpdate() {
       break;
   }
 }
+
+function mouseDownHandler() {
+  toggleCell(event);
+  canvas.addEventListener("mousemove", mouseMoveHandler);
+  window.addEventListener("mouseup", mouseUpHandler);
+}
+
+function mouseMoveHandler() {
+  toggleCell(event);
+}
+
+function mouseUpHandler() {
+  canvas.removeEventListener("mousemove", mouseMoveHandler);
+  window.removeEventListener("mouseup", mouseUpHandler);
+  lastToggledCol = null;
+  lastToggledRow = null;
+}
+
 //*******************
 // main program
 //*******************
@@ -134,26 +151,8 @@ for (let i = 0; i < 50; i++) {
   }
 }
 
-function mouseDownHandler() {
-  toggleCell(event);
-  canvas.addEventListener("mousemove", mouseMoveHandler);
-  window.addEventListener("mouseup", mouseUpHandler);
-}
-
-function mouseMoveHandler() {
-  toggleCell(event);
-}
-
-function mouseUpHandler() {
-  canvas.removeEventListener("mousemove", mouseMoveHandler);
-  window.removeEventListener("mouseup", mouseUpHandler);
-}
-
 phaseUpdate();
-// canvas.addEventListener("click", toggleCell);
 canvas.addEventListener("mousedown", mouseDownHandler);
-// canvas.addEventListener("mouseup", toggleCell);
-// canvas.addEventListener("mousemove", toggleCell);
 
 startButton.addEventListener("click", startGame);
 stopButton.addEventListener("click", () => {
@@ -177,7 +176,7 @@ resetButton.addEventListener("click", () => {
       fillCell(i, j);
     }
   }
-  // canvas.addEventListener("click", toggleCell);
+  canvas.addEventListener("mousedown", mouseDownHandler);
 });
 
 // rules modal
