@@ -78,5 +78,5 @@ body {
 }
 
 .rules:visited {
-  color: var(--font-color);
+  color: var(--btn-color);
 }

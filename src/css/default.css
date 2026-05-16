@@ -36,6 +36,11 @@ select {
   font: inherit;
 }
 
+button:focus-visible {
+  outline-offset: 2px;
+  outline-color: var(--btn-color);
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   background-color: var(--bg-color);
