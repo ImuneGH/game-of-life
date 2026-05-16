@@ -41,6 +41,7 @@ function toggleCell(e) {
   let y = e.offsetY;
   let col = Math.floor(x / 10);
   let row = Math.floor(y / 10);
+  if (row === lastToggledRow && col === lastToggledCol) return;
   grid[row][col] = grid[row][col] === 1 ? 0 : 1;
   fillCell(row, col);
   if (grid[row][col] === 1) {
@@ -48,8 +49,10 @@ function toggleCell(e) {
   } else {
     aliveCount--;
   }
-  console.log("fce provedena");
+  console.log(lastToggledCol, lastToggledRow);
   aliveCounter.textContent = aliveCount;
+  lastToggledCol = col;
+  lastToggledRow = row;
 }
 
 function startGame() {
@@ -114,6 +117,8 @@ const canvas = document.querySelector(".game-canvas");
 const ctx = canvas.getContext("2d");
 let grid = [];
 let newGrid = [];
+let lastToggledRow = null;
+let lastToggledCol = null;
 
 if (!canvas.getContext) {
   alert("Your browser does not support canvas!");
@@ -129,14 +134,14 @@ for (let i = 0; i < 50; i++) {
   }
 }
 
-function mouseDownHandler(e) {
-  // toggleCell(e);
+function mouseDownHandler() {
+  toggleCell(event);
   canvas.addEventListener("mousemove", mouseMoveHandler);
   window.addEventListener("mouseup", mouseUpHandler);
 }
 
-function mouseMoveHandler(e) {
-  toggleCell(e);
+function mouseMoveHandler() {
+  toggleCell(event);
 }
 
 function mouseUpHandler() {
