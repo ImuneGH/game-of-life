@@ -48,6 +48,7 @@ function toggleCell(e) {
   } else {
     aliveCount--;
   }
+  console.log("fce provedena");
   aliveCounter.textContent = aliveCount;
 }
 
@@ -55,7 +56,7 @@ function startGame() {
   isRunning = true;
   currentPhase = GAMEPHASE.RUNNING;
   phaseUpdate();
-  canvas.removeEventListener("click", toggleCell);
+  // canvas.removeEventListener("click", toggleCell);
   gameInterval = setInterval(() => {
     for (let i = 0; i < 50; i++) {
       for (let j = 0; j < 50; j++) {
@@ -128,8 +129,26 @@ for (let i = 0; i < 50; i++) {
   }
 }
 
+function mouseDownHandler(e) {
+  // toggleCell(e);
+  canvas.addEventListener("mousemove", mouseMoveHandler);
+  window.addEventListener("mouseup", mouseUpHandler);
+}
+
+function mouseMoveHandler(e) {
+  toggleCell(e);
+}
+
+function mouseUpHandler() {
+  canvas.removeEventListener("mousemove", mouseMoveHandler);
+  window.removeEventListener("mouseup", mouseUpHandler);
+}
+
 phaseUpdate();
-canvas.addEventListener("click", toggleCell);
+// canvas.addEventListener("click", toggleCell);
+canvas.addEventListener("mousedown", mouseDownHandler);
+// canvas.addEventListener("mouseup", toggleCell);
+// canvas.addEventListener("mousemove", toggleCell);
 
 startButton.addEventListener("click", startGame);
 stopButton.addEventListener("click", () => {
@@ -153,7 +172,7 @@ resetButton.addEventListener("click", () => {
       fillCell(i, j);
     }
   }
-  canvas.addEventListener("click", toggleCell);
+  // canvas.addEventListener("click", toggleCell);
 });
 
 // rules modal
