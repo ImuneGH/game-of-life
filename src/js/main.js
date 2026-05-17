@@ -137,7 +137,7 @@ let newGrid = [];
 let lastToggledRow = null;
 let lastToggledCol = null;
 const isMobile = window.innerWidth <= 600;
-const canvasSize = isMobile ? 30 : 50;
+let canvasSize = isMobile ? 30 : 50;
 
 if (!canvas.getContext) {
   alert("Your browser does not support canvas!");
@@ -197,5 +197,16 @@ rulesButton.addEventListener("click", () => {
 
 // mobile version
 
-if (window.innerWidth <= 600) {
-}
+window.addEventListener("resize", () => {
+  if (window.innerWidth <= 600 && canvasSize !== 30) {
+    canvasSize = 30;
+    canvas.width = 300;
+    canvas.height = 300;
+    resetButton.click();
+  } else if (window.innerWidth > 600 && canvasSize !== 50) {
+    canvasSize = 50;
+    canvas.width = 500;
+    canvas.height = 500;
+    resetButton.click();
+  }
+});
