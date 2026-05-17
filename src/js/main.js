@@ -7,7 +7,7 @@ function neighborCount(i, j) {
   for (let x = -1; x <= 1; x++) {
     for (let y = -1; y <= 1; y++) {
       if (x === 0 && y === 0) continue;
-      if (i + x < 0 || i + x >= canvasSize || j + y < 0 || j + y >= canvasSize) continue;
+      if (i + x < 0 || i + x >= gridSize || j + y < 0 || j + y >= gridSize) continue;
       count += grid[i + x][j + y];
     }
   }
@@ -60,8 +60,8 @@ function startGame() {
   phaseUpdate();
   canvas.removeEventListener("mousedown", mouseDownHandler);
   gameInterval = setInterval(() => {
-    for (let i = 0; i < canvasSize; i++) {
-      for (let j = 0; j < canvasSize; j++) {
+    for (let i = 0; i < gridSize; i++) {
+      for (let j = 0; j < gridSize; j++) {
         updateCell(i, j);
         fillCell(i, j);
       }
@@ -137,7 +137,7 @@ let newGrid = [];
 let lastToggledRow = null;
 let lastToggledCol = null;
 const isMobile = window.innerWidth <= 600;
-let canvasSize = isMobile ? 30 : 50;
+let gridSize = isMobile ? 30 : 50;
 
 if (!canvas.getContext) {
   alert("Your browser does not support canvas!");
@@ -148,10 +148,10 @@ if (isMobile) {
   canvas.height = 300;
 }
 
-for (let i = 0; i < canvasSize; i++) {
+for (let i = 0; i < gridSize; i++) {
   grid[i] = [];
   newGrid[i] = [];
-  for (let j = 0; j < canvasSize; j++) {
+  for (let j = 0; j < gridSize; j++) {
     grid[i][j] = 0;
     newGrid[i][j] = 0;
     fillCell(i, j);
@@ -176,8 +176,8 @@ resetButton.addEventListener("click", () => {
   isRunning = false;
   currentPhase = GAMEPHASE.SETUP;
   phaseUpdate();
-  for (let i = 0; i < canvasSize; i++) {
-    for (let j = 0; j < canvasSize; j++) {
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
       grid[i][j] = 0;
       newGrid[i][j] = 0;
       fillCell(i, j);
@@ -198,13 +198,13 @@ rulesButton.addEventListener("click", () => {
 // mobile version
 
 window.addEventListener("resize", () => {
-  if (window.innerWidth <= 600 && canvasSize !== 30) {
-    canvasSize = 30;
+  if (window.innerWidth <= 600 && gridSize !== 30) {
+    gridSize = 30;
     canvas.width = 300;
     canvas.height = 300;
     resetButton.click();
-  } else if (window.innerWidth > 600 && canvasSize !== 50) {
-    canvasSize = 50;
+  } else if (window.innerWidth > 600 && gridSize !== 50) {
+    gridSize = 50;
     canvas.width = 500;
     canvas.height = 500;
     resetButton.click();
