@@ -101,4 +101,8 @@ body {
     align-items: center;
     gap: 0.5rem;
   }
+
+  .rules {
+    top: 11.5rem;
+  }
 }
