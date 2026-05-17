@@ -80,7 +80,7 @@ function updateCounters() {
 function phaseUpdate() {
   switch (currentPhase) {
     case GAMEPHASE.SETUP:
-      gameStatus.textContent = "Setup: Myší vyberte buňky a stiskněte Start pro spuštění simulace.";
+      gameStatus.textContent = "Myší vyberte buňky a stiskněte Start pro spuštění simulace.";
       break;
     case GAMEPHASE.RUNNING:
       gameStatus.textContent = "Simulace běží. Stiskněte Stop pro pozastavení nebo Reset pro restartování.";
