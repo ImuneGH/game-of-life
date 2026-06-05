@@ -180,6 +180,8 @@ resetButton.addEventListener("click", () => {
   currentPhase = GAMEPHASE.SETUP;
   phaseUpdate();
   for (let i = 0; i < gridSize; i++) {
+    grid[i] = grid[i] || [];
+    newGrid[i] = newGrid[i] || [];
     for (let j = 0; j < gridSize; j++) {
       grid[i][j] = 0;
       newGrid[i][j] = 0;
