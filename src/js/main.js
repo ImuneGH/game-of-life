@@ -37,10 +37,12 @@ function fillCell(i, j) {
 }
 
 function toggleCell(e) {
+  if (!e) return;
   let x = e.offsetX;
   let y = e.offsetY;
   let col = Math.floor(x / 10);
   let row = Math.floor(y / 10);
+  if (row < 0 || row >= gridSize || col < 0 || col >= gridSize) return;
   if (row === lastToggledRow && col === lastToggledCol) return;
   grid[row][col] = grid[row][col] === 1 ? 0 : 1;
   fillCell(row, col);
@@ -49,6 +51,7 @@ function toggleCell(e) {
   } else {
     aliveCount--;
   }
+
   aliveCounter.textContent = aliveCount;
   lastToggledCol = col;
   lastToggledRow = row;
@@ -91,14 +94,14 @@ function phaseUpdate() {
   }
 }
 
-function mouseDownHandler() {
-  toggleCell(event);
+function mouseDownHandler(e) {
+  toggleCell(e);
   canvas.addEventListener("mousemove", mouseMoveHandler);
   window.addEventListener("mouseup", mouseUpHandler);
 }
 
-function mouseMoveHandler() {
-  toggleCell(event);
+function mouseMoveHandler(e) {
+  toggleCell(e);
 }
 
 function mouseUpHandler() {
