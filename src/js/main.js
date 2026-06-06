@@ -112,6 +112,14 @@ function mouseUpHandler() {
   lastToggledRow = null;
 }
 
+function updateSpeed() {
+  speed = speedRange.value * 1000;
+  if (isRunning) {
+    clearInterval(gameInterval);
+    startGame();
+  }
+}
+
 //*******************
 // main program
 //*******************
@@ -209,7 +217,8 @@ const speedValue = document.querySelector(".speed-value");
 
 speedRange.addEventListener("input", () => {
   speedValue.textContent = speedRange.value;
-  speed = speedRange.value * 1000;
+  speedRange.removeEventListener("mouseup", updateSpeed);
+  speedRange.addEventListener("mouseup", updateSpeed);
 });
 
 // mobile version
