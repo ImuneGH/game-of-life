@@ -57,6 +57,11 @@ body {
   transition: 0.2s ease;
 }
 
+.speed-range {
+  width: 5rem;
+  track: var(--btn-color);
+}
+
 .controls button:last-of-type {
   background-color: var(--btn-font);
   color: var(--btn-color);
