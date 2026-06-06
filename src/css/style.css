@@ -41,11 +41,34 @@ body {
 
 .controls {
   display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.controls button {
+.speed-range-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.speed-range-container label {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  text-align: center;
+}
+
+.speed-range {
+  width: 10rem;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.button-container button {
+  max-height: 2.5rem;
   padding: 0.5rem 1rem;
   background-color: var(--btn-color);
   color: var(--btn-font);
@@ -55,11 +78,6 @@ body {
   font-size: clamp(0.8rem, 2vw, 1rem);
 
   transition: 0.2s ease;
-}
-
-.speed-range {
-  width: 5rem;
-  track: var(--btn-color);
 }
 
 .controls button:last-of-type {
