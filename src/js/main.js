@@ -72,7 +72,8 @@ function startGame() {
     generation++;
     updateCounters();
     [grid, newGrid] = [newGrid, grid];
-  }, 1000);
+    console.log(speed);
+  }, speed);
 }
 
 function updateCounters() {
@@ -141,6 +142,7 @@ let lastToggledRow = null;
 let lastToggledCol = null;
 const isMobile = window.innerWidth <= 600;
 let gridSize = isMobile ? 30 : 50;
+let speed = 1000;
 
 if (!canvas.getContext) {
   alert("Your browser does not support canvas!");
@@ -198,6 +200,16 @@ const rulesDialog = document.querySelector(".rules-dialog");
 
 rulesButton.addEventListener("click", () => {
   rulesDialog.showModal();
+});
+
+// speed range
+
+const speedRange = document.querySelector(".speed-range");
+const speedValue = document.querySelector(".speed-value");
+
+speedRange.addEventListener("input", () => {
+  speedValue.textContent = speedRange.value;
+  speed = speedRange.value * 1000;
 });
 
 // mobile version
