@@ -31,9 +31,7 @@ function fillCell(i, j) {
   } else {
     ctx.fillStyle = grid[i][j] === 1 ? aliveCellColor : deadCellColor;
   }
-  ctx.beginPath();
-  ctx.roundRect(j * 10, i * 10, 9, 9, 2);
-  ctx.fill();
+  ctx.fillRect(j * 10, i * 10, 9, 9);
 }
 
 function toggleCell(e) {
