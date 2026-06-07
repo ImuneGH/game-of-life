@@ -70,7 +70,6 @@ function startGame() {
     generation++;
     updateCounters();
     [grid, newGrid] = [newGrid, grid];
-    console.log(speed);
   }, speed);
 }
 
