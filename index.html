@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game of Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/assets/index-DGisWPDh.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Di1s34ra.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1 class="title">Game of Life</h1>
+      <button class="rules" title="Pravidla simulace">[?]</button>
+      <dialog closedby="any" class="rules-dialog">
+        <p class="rules-description">
+          Jedná se o simulaci, kde se používá mřížka (grid) a v ní jsou buňky buď živé nebo mrtvé. Před spuštěním se živé buňky označí stisknutím a tažením myši, pak začne simulace, která se
+          řídí těmito pravidly:
+        </p>
+        <br />
+        <ol class="rules-list">
+          <li class="rule-list">Živá buňka s méně než 2 živými sousedy <b>zemře</b> (osamělost)</li>
+          <li class="rule-list">Živá buňka s 2 nebo 3 živými sousedy <b>přežije</b></li>
+          <li class="rule-list">Živá buňka s více než 3 živými sousedy <b>zemře</b> (přelidnění)</li>
+          <li class="rule-list">Mrtvá buňka s přesně 3 živými sousedy <b>oživne</b> (reprodukce)</li>
+        </ol>
+      </dialog>
+      <div class="game-info-wrapper">
+        <p class="game-status">placeholder</p>
+        <p>Generace: <span class="generation">0</span></p>
+        <p>Aktivní buňky: <span class="alive-cells">0</span></p>
+      </div>
+      <canvas class="game-canvas" width="500" height="500"></canvas>
+      <div class="controls">
+        <div class="speed-range-container">
+          <label for="speed-range">Rychlost přechodu generace: <span class="speed-value">1</span>s</label>
+          <input id="speed-range" type="range" class="speed-range" min="0.1" max="5" value="1" step="0.1" />
+        </div>
+        <div class="button-container">
+          <button class="start-btn">Start</button>
+          <button class="stop-btn">Stop</button>
+          <button class="reset-btn">Reset</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
