@@ -1,6 +1,6 @@
 # **Game of Life**
 
-**demo in progress**
+**Vyzkoušej zde:** https://imunegh.github.io/game-of-life/
 
 ### **CZ Popis**
 
