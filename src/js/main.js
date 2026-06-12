@@ -203,8 +203,23 @@ resetButton.addEventListener("click", () => {
 const rulesButton = document.querySelector(".rules");
 const rulesDialog = document.querySelector(".rules-dialog");
 
+function closeRulesDialog(e) {
+  const rect = rulesDialog.getBoundingClientRect();
+  if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || (e.clientY > rect.bottom && e.target !== rulesButton)) {
+    rulesDialog.close();
+    document.removeEventListener("click", closeRulesDialog);
+  }
+}
+
 rulesButton.addEventListener("click", () => {
   rulesDialog.showModal();
+  document.addEventListener("click", closeRulesDialog);
+});
+
+rulesDialog.addEventListener("close", (e) => {
+  if (e.target === rulesDialog) {
+    document.removeEventListener("click", closeRulesDialog);
+  }
 });
 
 // speed range
