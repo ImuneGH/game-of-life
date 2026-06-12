@@ -117,14 +117,6 @@ function updateSpeed() {
   }
 }
 
-function closeRulesDialog(e) {
-  const rect = rulesDialog.getBoundingClientRect();
-  if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || (e.clientY > rect.bottom && e.target !== rulesButton)) {
-    rulesDialog.close();
-    document.removeEventListener("click", closeRulesDialog);
-  }
-}
-
 //*******************
 // main program
 //*******************
@@ -211,7 +203,16 @@ resetButton.addEventListener("click", () => {
 const rulesButton = document.querySelector(".rules");
 const rulesDialog = document.querySelector(".rules-dialog");
 
+function closeRulesDialog(e) {
+  const rect = rulesDialog.getBoundingClientRect();
+  if ((e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) && e.target !== rulesButton) {
+    rulesDialog.close();
+    document.removeEventListener("click", closeRulesDialog);
+  }
+}
+
 rulesButton.addEventListener("click", () => {
+  console.log("Opening rules dialog");
   rulesDialog.showModal();
   document.addEventListener("click", closeRulesDialog);
 });
