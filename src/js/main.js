@@ -95,16 +95,19 @@ function phaseUpdate() {
 function pointerDownHandler(e) {
   if (pointerId !== null) return;
   pointerId = e.pointerId;
+  console.log(`Pointer down: ${pointerId}`);
   toggleCell(e);
   canvas.addEventListener("pointermove", pointerMoveHandler);
   window.addEventListener("pointerup", pointerUpHandler);
 }
 
 function pointerMoveHandler(e) {
+  if (e.pointerId !== pointerId) return;
   toggleCell(e);
 }
 
-function pointerUpHandler() {
+function pointerUpHandler(e) {
+  if (e.pointerId !== pointerId) return;
   canvas.removeEventListener("pointermove", pointerMoveHandler);
   window.removeEventListener("pointerup", pointerUpHandler);
   lastToggledCol = null;
