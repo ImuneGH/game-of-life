@@ -38,6 +38,10 @@ body {
   text-align: center;
 }
 
+.game-canvas {
+  pointer-events: none;
+}
+
 .controls {
   display: flex;
   flex-direction: column;

@@ -59,7 +59,7 @@ function startGame() {
   isRunning = true;
   currentPhase = GAMEPHASE.RUNNING;
   phaseUpdate();
-  canvas.removeEventListener("mousedown", mouseDownHandler);
+  canvas.removeEventListener("pointerdown", pointerDownHandler);
   gameInterval = setInterval(() => {
     for (let i = 0; i < gridSize; i++) {
       for (let j = 0; j < gridSize; j++) {
@@ -92,19 +92,19 @@ function phaseUpdate() {
   }
 }
 
-function mouseDownHandler(e) {
+function pointerDownHandler(e) {
   toggleCell(e);
-  canvas.addEventListener("mousemove", mouseMoveHandler);
-  window.addEventListener("mouseup", mouseUpHandler);
+  canvas.addEventListener("pointermove", pointerMoveHandler);
+  window.addEventListener("pointerup", pointerUpHandler);
 }
 
-function mouseMoveHandler(e) {
+function pointerMoveHandler(e) {
   toggleCell(e);
 }
 
-function mouseUpHandler() {
-  canvas.removeEventListener("mousemove", mouseMoveHandler);
-  window.removeEventListener("mouseup", mouseUpHandler);
+function pointerUpHandler() {
+  canvas.removeEventListener("pointermove", pointerMoveHandler);
+  window.removeEventListener("pointerup", pointerUpHandler);
   lastToggledCol = null;
   lastToggledRow = null;
 }
@@ -177,7 +177,7 @@ for (let i = 0; i < gridSize; i++) {
 }
 
 phaseUpdate();
-canvas.addEventListener("mousedown", mouseDownHandler);
+canvas.addEventListener("pointerdown", pointerDownHandler);
 
 startButton.addEventListener("click", startGame);
 stopButton.addEventListener("click", () => {
@@ -203,7 +203,7 @@ resetButton.addEventListener("click", () => {
       fillCell(i, j);
     }
   }
-  canvas.addEventListener("mousedown", mouseDownHandler);
+  canvas.addEventListener("pointerdown", pointerDownHandler);
 });
 
 // rules modal
