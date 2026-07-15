@@ -39,7 +39,7 @@ body {
 }
 
 .game-canvas {
-  pointer-events: none;
+  touch-action: none;
 }
 
 .controls {
