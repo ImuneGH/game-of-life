@@ -93,6 +93,8 @@ function phaseUpdate() {
 }
 
 function pointerDownHandler(e) {
+  if (pointerId !== null) return;
+  pointerId = e.pointerId;
   toggleCell(e);
   canvas.addEventListener("pointermove", pointerMoveHandler);
   window.addEventListener("pointerup", pointerUpHandler);
@@ -107,6 +109,7 @@ function pointerUpHandler() {
   window.removeEventListener("pointerup", pointerUpHandler);
   lastToggledCol = null;
   lastToggledRow = null;
+  pointerId = null;
 }
 
 function updateSpeed() {
@@ -141,6 +144,7 @@ let isRunning = false;
 let gameInterval = null;
 let generation = 0;
 let aliveCount = 0;
+let pointerId = null;
 const GAMEPHASE = Object.freeze({
   SETUP: "setup",
   RUNNING: "running",
