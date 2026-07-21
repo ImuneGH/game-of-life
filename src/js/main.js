@@ -74,6 +74,34 @@ function startGame() {
   }, speed);
 }
 
+function stopGame() {
+  if (!isRunning) return;
+  clearInterval(gameInterval);
+  isRunning = false;
+  currentPhase = GAMEPHASE.STOPPED;
+  phaseUpdate();
+}
+
+function resetGame() {
+  aliveCount = 0;
+  generation = 0;
+  updateCounters();
+  clearInterval(gameInterval);
+  isRunning = false;
+  currentPhase = GAMEPHASE.SETUP;
+  phaseUpdate();
+  for (let i = 0; i < gridSize; i++) {
+    grid[i] = grid[i] || [];
+    newGrid[i] = newGrid[i] || [];
+    for (let j = 0; j < gridSize; j++) {
+      grid[i][j] = 0;
+      newGrid[i][j] = 0;
+      fillCell(i, j);
+    }
+  }
+  canvas.addEventListener("pointerdown", pointerDownHandler);
+}
+
 function updateCounters() {
   generationCounter.textContent = generation;
   aliveCounter.textContent = aliveCount;
@@ -188,32 +216,8 @@ phaseUpdate();
 canvas.addEventListener("pointerdown", pointerDownHandler);
 
 startButton.addEventListener("click", startGame);
-stopButton.addEventListener("click", () => {
-  if (!isRunning) return;
-  clearInterval(gameInterval);
-  isRunning = false;
-  currentPhase = GAMEPHASE.STOPPED;
-  phaseUpdate();
-});
-resetButton.addEventListener("click", () => {
-  aliveCount = 0;
-  generation = 0;
-  updateCounters();
-  clearInterval(gameInterval);
-  isRunning = false;
-  currentPhase = GAMEPHASE.SETUP;
-  phaseUpdate();
-  for (let i = 0; i < gridSize; i++) {
-    grid[i] = grid[i] || [];
-    newGrid[i] = newGrid[i] || [];
-    for (let j = 0; j < gridSize; j++) {
-      grid[i][j] = 0;
-      newGrid[i][j] = 0;
-      fillCell(i, j);
-    }
-  }
-  canvas.addEventListener("pointerdown", pointerDownHandler);
-});
+stopButton.addEventListener("click", stopGame);
+resetButton.addEventListener("click", resetGame);
 
 // rules modal
 
