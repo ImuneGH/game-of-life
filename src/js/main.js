@@ -82,7 +82,7 @@ function updateCounters() {
 function phaseUpdate() {
   switch (currentPhase) {
     case GAMEPHASE.SETUP:
-      gameStatus.textContent = "Myší vyberte buňky a stiskněte Start pro spuštění simulace.";
+      gameStatus.textContent = "Klikněte (nebo táhněte myší) na políčka a označte živé buňky. Poté simulaci spusťte tlačítkem Start.";
       break;
     case GAMEPHASE.RUNNING:
       gameStatus.textContent = "Simulace běží. Stiskněte Stop pro pozastavení nebo Reset pro restartování.";
@@ -188,6 +188,7 @@ canvas.addEventListener("pointerdown", pointerDownHandler);
 
 startButton.addEventListener("click", startGame);
 stopButton.addEventListener("click", () => {
+  if (!isRunning) return;
   clearInterval(gameInterval);
   isRunning = false;
   currentPhase = GAMEPHASE.STOPPED;
