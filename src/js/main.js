@@ -119,6 +119,7 @@ function updateSpeed() {
   speed = speedRange.value * 1000;
   if (isRunning) {
     clearInterval(gameInterval);
+    isRunning = false;
     startGame();
   }
 }
