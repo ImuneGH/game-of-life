@@ -220,7 +220,6 @@ const rulesButton = document.querySelector(".rules");
 const rulesDialog = document.querySelector(".rules-dialog");
 
 rulesButton.addEventListener("click", () => {
-  console.log("Opening rules dialog");
   rulesDialog.showModal();
   document.addEventListener("click", closeRulesDialog);
 });
