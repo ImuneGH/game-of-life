@@ -56,6 +56,7 @@ function toggleCell(e) {
 }
 
 function startGame() {
+  if (isRunning) return;
   isRunning = true;
   currentPhase = GAMEPHASE.RUNNING;
   phaseUpdate();
@@ -95,7 +96,6 @@ function phaseUpdate() {
 function pointerDownHandler(e) {
   if (pointerId !== null) return;
   pointerId = e.pointerId;
-  console.log(`Pointer down: ${pointerId}`);
   toggleCell(e);
   canvas.addEventListener("pointermove", pointerMoveHandler);
   window.addEventListener("pointerup", pointerUpHandler);
