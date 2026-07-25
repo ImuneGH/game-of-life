@@ -80,6 +80,7 @@ function stopGame() {
   isRunning = false;
   currentPhase = GAMEPHASE.STOPPED;
   phaseUpdate();
+  canvas.addEventListener("pointerdown", pointerDownHandler);
 }
 
 function resetGame() {
