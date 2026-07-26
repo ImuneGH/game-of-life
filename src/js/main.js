@@ -59,7 +59,7 @@ function startGame() {
   if (isRunning) return;
   isRunning = true;
   currentPhase = GAMEPHASE.RUNNING;
-  phaseUpdate();
+  updatePhaseInstructions();
   canvas.removeEventListener("pointerdown", pointerDownHandler);
   gameInterval = setInterval(() => {
     for (let i = 0; i < gridSize; i++) {
@@ -79,7 +79,7 @@ function stopGame() {
   clearInterval(gameInterval);
   isRunning = false;
   currentPhase = GAMEPHASE.STOPPED;
-  phaseUpdate();
+  updatePhaseInstructions();
   canvas.addEventListener("pointerdown", pointerDownHandler);
 }
 
@@ -90,7 +90,7 @@ function resetGame() {
   clearInterval(gameInterval);
   isRunning = false;
   currentPhase = GAMEPHASE.SETUP;
-  phaseUpdate();
+  updatePhaseInstructions();
   for (let i = 0; i < gridSize; i++) {
     grid[i] = grid[i] || [];
     newGrid[i] = newGrid[i] || [];
@@ -108,7 +108,7 @@ function updateCounters() {
   aliveCounter.textContent = aliveCount;
 }
 
-function phaseUpdate() {
+function updatePhaseInstructions() {
   switch (currentPhase) {
     case GAMEPHASE.SETUP:
       gameStatus.textContent = "Klikněte (nebo táhněte myší) na políčka a označte živé buňky. Poté simulaci spusťte tlačítkem Start.";
@@ -213,7 +213,7 @@ for (let i = 0; i < gridSize; i++) {
   }
 }
 
-phaseUpdate();
+updatePhaseInstructions();
 canvas.addEventListener("pointerdown", pointerDownHandler);
 
 startButton.addEventListener("click", startGame);
