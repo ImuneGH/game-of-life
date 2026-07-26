@@ -2,7 +2,7 @@
 // functions
 //*******************
 
-function neighborCount(i, j) {
+function countNeighbors(i, j) {
   let count = 0;
   for (let x = -1; x <= 1; x++) {
     for (let y = -1; y <= 1; y++) {
@@ -15,7 +15,7 @@ function neighborCount(i, j) {
 }
 
 function updateCell(i, j) {
-  const neighbors = neighborCount(i, j);
+  const neighbors = countNeighbors(i, j);
   if (grid[i][j] === 1) {
     newGrid[i][j] = neighbors === 2 || neighbors === 3 ? 1 : 0;
     newGrid[i][j] === 0 && aliveCount--;
